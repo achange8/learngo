@@ -11,15 +11,17 @@ import (
 
 var (
 	limit   int    = 50
-	baseURL string = fmt.Sprintf("https://kr.indeed.com/jobs?q=python&limit=%d", limit)
+	baseURL string = fmt.Sprintf("https://www.indeed.com/jobs?q=python&limit=%d", limit)
 )
 
 func main() {
+	fmt.Println("1234")
 	totalPages := getPages(baseURL, 0)
 	for i := 0; i < totalPages; i++ {
 		getpage(i)
 	}
 }
+
 func getpage(page int) {
 	pageURL := baseURL + "&start=" + strconv.Itoa(page*50)
 	fmt.Println(pageURL)
@@ -34,6 +36,8 @@ func getpage(page int) {
 	searchCards.Each(func(i int, card *goquery.Selection) {
 		id, _ := card.Attr("data-jk")
 		fmt.Println(id)
+		title := card.Find("h2>span").Text()
+		fmt.Println(title)
 
 	})
 }
