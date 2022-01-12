@@ -9,6 +9,13 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
+type extracteJob struct {
+	id          string
+	title       string
+	companyName string
+	location    string
+}
+
 var (
 	limit   int    = 50
 	baseURL string = fmt.Sprintf("https://www.indeed.com/jobs?q=python&limit=%d", limit)
@@ -35,10 +42,10 @@ func getpage(page int) {
 	searchCards := doc.Find(".tapItem")
 	searchCards.Each(func(i int, card *goquery.Selection) {
 		id, _ := card.Attr("data-jk")
-		fmt.Println(id)
 		title := card.Find("h2>span").Text()
-		fmt.Println(title)
-
+		companyName := card.Find(".companyName").Text()
+		location := card.Find("div pre").Text()
+		fmt.Println(id, title, companyName, location)
 	})
 }
 
