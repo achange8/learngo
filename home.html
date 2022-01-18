@@ -9,8 +9,8 @@
   <body>
     <h1>Go Jobs</h1>
     <h3>Indeed.com scrapper with golang</h3>
-    <form>
-      <input placeholder="what job do u want?" />
+    <form method="POST" action="/scrape">
+      <input placeholder="what job do u want?" name="term" />
       <button>Search</button>
     </form>
   </body>
