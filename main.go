@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	scrapper "learngo/scarpper"
 	"os"
 	"strings"
@@ -26,4 +27,5 @@ func main() {
 	e.GET("/", handleHome)
 	e.POST("/scrape", handlescrape)
 	e.Logger.Fatal(e.Start(":1323"))
+	fmt.Println()
 }
